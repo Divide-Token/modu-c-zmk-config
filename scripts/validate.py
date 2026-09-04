@@ -149,10 +149,13 @@ def _keymap_layers(text: str) -> list[tuple[str, list[str]]]:
         node_body = body[node_opening + 1 : node_closing]
         binding_match = re.search(r"\bbindings\s*=\s*<(.*?)>\s*;", node_body, re.DOTALL)
         if binding_match:
-            behavior_names = re.findall(
-                r"(?<![A-Za-z0-9_])&([A-Za-z_][A-Za-z0-9_]*)",
-                binding_match.group(1),
-            )
+            behavior_names = [
+                "as" if token.startswith("AS(") else token[1:]
+                for token in re.findall(
+                    r"(?<![A-Za-z0-9_])(?:&[A-Za-z_][A-Za-z0-9_]*|AS\([^)]*\))",
+                    binding_match.group(1),
+                )
+            ]
             layers.append((node_match.group(1), behavior_names))
         position = node_closing + 1
     return layers
