@@ -69,13 +69,21 @@
             bindings = <&mo &skq>;
         };
 
-        /* Tap = first key, hold (>200 ms) = second key. Used for Raycast thumb. */
+        /* Usage: &tkh HOLD_KEY TAP_KEY. Hold (>200 ms) = first key, tap = second key. */
         tkh: tap_key_hold_key {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             bindings = <&kp>, <&kp>;
+        };
+
+        /* 1 tap = Cmd+C, 2 taps = Cmd+V, hold = Cmd+A. */
+        cpy: copy_paste_select_all {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&tkh LG(A) LG(C)>, <&kp LG(V)>;
         };
 
         /* Tap = Page Up; double-tap = Ctrl+B for tmux. */
@@ -179,8 +187,8 @@
 // |BSPC   | A  |S/ALT|D/CTL| F  |G/GUI| |H/GUI| J  |K/CTL|L/ALT| ;  |PGUP|
 // |LSFT| Z  | X  | C  | V  | B  |   | N  | M  | ,  | .  | /  |PGDN|
 // |LCTL|LALT|LGUI|                                 |RALT|RCTL|END |
-//        |CLIP|SPC|RET/LOWER|   |OS SHIFT/MOUSE|BSPC|WINDOWS(tap)/RAYCAST(hold)|(no key)|
-// Lower thumbs (hold left Enter): TABS | DEL | Cmd+`
+//        |CLIP|SPC/LOWER|COPY x1 PASTE x2 SELECT-ALL hold|   |OS SHIFT/MOUSE|BSPC|WINDOWS(tap)/RAYCAST(hold)|(no key)|
+// Lower thumbs (hold Space): TABS | DEL | Cmd+`      Enter = L+; combo
 // Combos: U+I = \   I+O = ~   M+, = `   Q+W = [   O+P = ]
 //         D+F = CAPS (한/영)   J+K = ESC   X+C = TAB   L+; = RET
             bindings = <
@@ -189,7 +197,7 @@
 &kp BSPC    &kp A    &hml LALT S &hml LCTRL D &kp F &hml LGUI G &hmr RGUI H &kp J &hmr RCTRL K &hmr RALT L &kp SEMI &tdpt
 &kp LSHFT   &kp Z    &kp X     &kp C     &kp V     &kp B       &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp PG_DN
 &kp LCTRL &kp LALT &kp LGUI  &none     &none     &none       &none     &none     &none     &kp RALT  &kp RCTRL &kp END
-                     &kp RC_CLIP   &kp SPACE   &lt 1 RET     &sml 2 LSHIFT &kp BSPC  &tkh RC_WIN RC_LAUNCH   &trans
+                     &kp RC_CLIP   &lt 1 SPACE   &cpy        &sml 2 LSHIFT &kp BSPC  &tkh RC_LAUNCH RC_WIN   &trans
             >;
         };
 
