@@ -179,8 +179,8 @@
 // |BSPC   | A  |S/ALT|D/CTL| F  |G/GUI| |H/GUI| J  |K/CTL|L/ALT| ;  |PGUP|
 // |LSFT| Z  | X  | C  | V  | B  |   | N  | M  | ,  | .  | /  |PGDN|
 // |LCTL|LALT|LGUI|                                 |RALT|RCTL|END |
-//        |CLIP|RET|SPC/LOWER|   |OS SHIFT/MOUSE|BSPC|WINDOWS(tap)/RAYCAST(hold)|(no key)|
-// Lower thumbs (hold left space): TABS | DEL | Cmd+`
+//        |CLIP|SPC|RET/LOWER|   |OS SHIFT/MOUSE|BSPC|WINDOWS(tap)/RAYCAST(hold)|(no key)|
+// Lower thumbs (hold left Enter): TABS | DEL | Cmd+`
 // Combos: U+I = \   I+O = ~   M+, = `   Q+W = [   O+P = ]
 //         D+F = CAPS (한/영)   J+K = ESC   X+C = TAB   L+; = RET
             bindings = <
@@ -189,7 +189,7 @@
 &kp BSPC    &kp A    &hml LALT S &hml LCTRL D &kp F &hml LGUI G &hmr RGUI H &kp J &hmr RCTRL K &hmr RALT L &kp SEMI &tdpt
 &kp LSHFT   &kp Z    &kp X     &kp C     &kp V     &kp B       &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp PG_DN
 &kp LCTRL &kp LALT &kp LGUI  &none     &none     &none       &none     &none     &none     &kp RALT  &kp RCTRL &kp END
-                     &kp RC_CLIP   &kp RET     &lt 1 SPACE   &sml 2 LSHIFT &kp BSPC  &tkh RC_WIN RC_LAUNCH   &trans
+                     &kp RC_CLIP   &kp SPACE   &lt 1 RET     &sml 2 LSHIFT &kp BSPC  &tkh RC_WIN RC_LAUNCH   &trans
             >;
         };
 
